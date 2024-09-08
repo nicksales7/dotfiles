@@ -1,2 +1,2 @@
 # dotfiles
-Some files!!!!!! Structured like ```bash $home```.
+Some files!!!!!! Structured like ```$home```.
