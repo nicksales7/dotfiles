@@ -142,10 +142,14 @@ vim.opt.swapfile = false
 require("lazy").setup({
   spec = {{
     {
-      "aktersnurra/no-clown-fiesta.nvim", 
-      config = function()
-        vim.cmd.colorscheme("no-clown-fiesta")
-      end,
+        "slugbyte/lackluster.nvim",
+        lazy = false,
+        priority = 1000,
+        init = function()
+            vim.cmd.colorscheme("lackluster")
+            -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+            -- vim.cmd.colorscheme("lackluster-mint")
+        end,
     },
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
