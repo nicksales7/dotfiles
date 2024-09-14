@@ -1,3 +1,6 @@
+-- Remap leader to space
+vim.g.mapleader = " "
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -14,9 +17,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-
--- Remap leader to space
-vim.g.mapleader = " "
 
 -- New Explore Tab
 vim.keymap.set('n', '<leader><Tab>', function()
@@ -147,8 +147,6 @@ require("lazy").setup({
         priority = 1000,
         init = function()
             vim.cmd.colorscheme("lackluster")
-            -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
-            -- vim.cmd.colorscheme("lackluster-mint")
         end,
     },
       "nvim-treesitter/nvim-treesitter",
@@ -171,14 +169,30 @@ require("lazy").setup({
       ft = { "markdown" },
       config = function(_, opts)
         -- Set up Treesitter configs
-        require("nvim-treesitter.configs").setup(opts)
-        
+        require("nvim-treesitter.configs").setup(opts) 
         -- Set keybindings for Markdown Preview
         vim.api.nvim_set_keymap('n', '<Leader>p', ':MarkdownPreview<CR>', { noremap = true, silent = true })
         vim.api.nvim_set_keymap('n', '<Leader>pe', ':MarkdownPreviewStop<CR>', { noremap = true, silent = true })
       end,
     },
-    { "lervag/vimtex" },
+    {
+      "lervag/vimtex",
+      lazy = false,     -- we don't want to lazy load VimTeX
+      -- tag = "v2.15", -- uncomment to pin to a specific release
+      init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "zathura"
+      end
+    },
+    {
+    'SirVer/ultisnips',
+    config = function()
+      vim.g.UltiSnipsExpandTrigger = '<tab>'
+      vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+      vim.g.UltiSnipsSnippetDirectories = {'~/.vim/UltiSnips', 'UltiSnips'}
+    end,
+    },
     {
       "neoclide/coc.nvim",
       branch = "release",
