@@ -1,4 +1,5 @@
 # i3blocks config
+
 [volume]
 command=amixer get Master | awk -F'[][]' '/Left:/ { print "VOL: " $2 }'
 interval=1
@@ -33,3 +34,4 @@ color=#FFFFFF
 command=date '+%Y-%m-%d %H:%M:%S'
 interval=1
 color=#FFFFFF
+
