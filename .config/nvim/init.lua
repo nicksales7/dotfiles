@@ -1,6 +1,3 @@
--- Remap leader to space
-vim.g.mapleader = " "
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -76,10 +73,10 @@ vim.api.nvim_set_keymap('i', '\\(', '\\(\\)<Esc>i', { noremap = true, silent = t
 vim.api.nvim_set_keymap('i', '\\{', '\\{\\}<Esc>i', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '\\[', '\\[\\]<Esc>i', { noremap = true, silent = true })
 
--- Autocmd to set up a keymap for $$ in markdown files
+-- Autocmd to set up a keymap for $$ in markdown and tex files
 vim.api.nvim_exec([[
-  autocmd FileType markdown nnoremap <buffer> $ $$<Left>
-  autocmd FileType markdown inoremap <buffer> $ $$<Left>
+  autocmd FileType markdown,tex nnoremap <buffer> $ $$<Left>
+  autocmd FileType markdown,tex inoremap <buffer> $ $$<Left>
 ]], false)
 
 -- Set tab spacing
@@ -123,7 +120,7 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Set undo file to remember undo history between sessions
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand('~/.config/nvim/undodir')
+vim.opt.undodir = vim.fn.expand('~/Documents/nvim-undo')
 
 -- Set split window directions
 vim.opt.splitbelow = true
