@@ -65,7 +65,7 @@ tiling_drag modifier titlebar
 bindsym $mod+t exec alacritty
 
 # start firefox
-bindsym $mod+b exec chromium
+bindsym $mod+b exec brave
 
 # start file manager
 bindsym $mod+m exec thunar 

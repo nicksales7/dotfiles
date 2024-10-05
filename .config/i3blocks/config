@@ -6,7 +6,7 @@ interval=1
 color=#FFFFFF
 
 [battery]
-command=acpi -b | grep 'Battery 1' | awk '{print "BAT: " $5 }' | sed 's/,//'
+command=acpi -b | awk '/Battery 1/{b1=1; bat="Battery 1"; status=$5} /Battery 0/{if(!b1) {bat="Battery 0"; status=$4}} END{gsub(/,/, "", status); print "BAT: " status}'
 interval=30
 color=#FFFFFF
 

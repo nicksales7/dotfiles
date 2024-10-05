@@ -1,3 +1,6 @@
+-- Remap leader to space
+vim.g.mapleader = " "
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -37,9 +40,6 @@ vim.opt.background = 'dark'
 
 -- For nextword idk
 vim.api.nvim_set_keymap('n', '<leader>n', ':noh<CR>', { noremap = true, silent = true })
-
--- Move focus left
-vim.keymap.set('n', '<leader>h', '<C-w>h', { noremap = true, silent = true })
 
 -- Move focus right
 vim.keymap.set('n', '<leader>l', '<C-w>l', { noremap = true, silent = true })
