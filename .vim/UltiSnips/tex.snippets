@@ -1,0 +1,125 @@
+snippet template "Basic template" b
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{8cm}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% Document settings
+\geometry{a4paper, margin=1in}
+\setlength\parindent{0pt}
+\setlength\parskip{1em}
+
+\title{$1}
+\author{Nicholas Sales}
+\date{\today} % This will automatically insert today's date
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+	$0
+\end{document}
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet lim "limit" w
+\lim_{${1:n} \to ${2:\infty}}
+endsnippet
+
+snippet log "log" w
+\log_{$1}{($2)}
+endsnippet
+
+snippet sum "sum" w
+\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+endsnippet
+
+snippet part "d/dx" w
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+snippet dint "integral" wA
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+snippet plot "Plot" w
+\begin{figure}[$1]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+			xmin= ${2:-10}, xmax= ${3:10},
+			ymin= ${4:-10}, ymax = ${5:10},
+            axis lines = middle,
+            legend style={at={(1.05,1)},anchor=north west},
+        ]
+            \addplot[domain=$2:$3, samples=${6:100}, $7]{$8};
+            \addlegendentry{$9}             
+		\end{axis}
+    \end{tikzpicture}
+    \caption{$10}
+    \label{${11:$10}}
+\end{figure}
+endsnippet
+
+snippet addplot "Plot" w
+\addplot[domain=$1:$2, samples=${3:100}, $4]{$5};
+\addlegendentry{$6}     
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[ht]
+    \centering
+    \incfig{$1}
+    \caption{$1}
+    \label{fig:$1}
+\end{figure}
+endsnippet
+
+snippet prod "product" w
+\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+endsnippet
+
+snippet taylor "taylor" w
+\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
+endsnippet
+
+snippet cvec "column vector" iA
+\begin{bmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{bmatrix}
+endsnippet
+
+snippet uuu "bigcup" iA
+\bigcup_{${1:i \in ${2: I}}} $0
+endsnippet
+
+snippet nnn "bigcap" iA
+\bigcap_{${1:i \in ${2: I}}} $0
+endsnippet
