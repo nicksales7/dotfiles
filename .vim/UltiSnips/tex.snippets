@@ -47,8 +47,16 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+snippet hline "Horizontal Line" bA
+\noindent\rule{\textwidth}{1pt}
+endsnippet
+
 snippet // "Fraction" iA
 \\frac{$1}{$2}$0
+endsnippet
+
+snippet mbb "Mathbb" iA
+\mathbb{$1}$0
 endsnippet
 
 snippet lim "limit" w
