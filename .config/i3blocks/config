@@ -1,0 +1,36 @@
+# i3blocks config
+
+[volume]
+command=amixer get Master | awk -F'[][]' '/Left:/ { print "VOL: " $2 }'
+interval=1
+color=#FFFFFF
+
+[battery]
+command=acpi -b | awk -F', ' '{print "BAT: " $2}' | tr -d '%'
+interval=30
+color=#FFFFFF
+
+[wireless]
+command=iw dev wlp3s0 link | awk '/SSID/ { essid=$2 } /signal/ { signal=$2 " " $3 }  /tx bitrate/ { br=$3 " " $4 } END { print "W: (ESSID: " essid ", Bit Rate: " br ")" }'
+interval=5
+color=#FFFFFF
+
+[cpu_gpu_temperature]
+command=~/.config/i3/cpu_gpu_temp.sh
+interval=1
+color=#FFFFFF
+
+#[ethernet]
+#command=ip -o -4 addr show eth0 | awk '{print "E: " $4}'
+#interval=5
+#color=#FFFFFF
+
+[memory]
+command=free -h | awk '/^Mem/ {print "MEM: " $3 "/" $2}'
+interval=10
+color=#FFFFFF
+
+[tztime]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
+color=#FFFFFF
