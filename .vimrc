@@ -5,15 +5,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 
 Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+let g:vimtex_view_method = 'zathura'
+
+Plug 'aditya-azad/candle-grey'
+
 
 call plug#end()
 
 " General settings
-colorscheme habamax
 set number                  " Show line numbers
 set relativenumber          " Show relative line numbers
 set cursorline              " Highlight current line
@@ -25,6 +28,7 @@ set cmdheight=2             " Set command-line height
 set splitbelow              " Horizontal splits go below
 set splitright              " Vertical splits go right
 set updatetime=300          " Reduce update time for responsive UI
+colorscheme candle-grey-transparent
 
 " Tab and indentation settings
 set tabstop=4               " Tab width
@@ -51,7 +55,15 @@ set noswapfile
 " Backspace settings
 set backspace=indent,eol,start
 
-" Autoclose brackets and quotes
+" Autoclose for TeX files
+autocmd FileType tex inoremap \( \(\)<Left><Left>
+autocmd FileType tex inoremap \[ \[\]<Left><Left>
+autocmd FileType tex inoremap \{ \{\}<Left><Left>
+
+" Spellcheck markdown
+autocmd FileType markdown setlocal spell spelllang=en
+
+" Autoclose brackets and quotes globally
 inoremap ( ()<Left>
 inoremap ' ''<Left> 
 inoremap ` ``<Left>
@@ -69,8 +81,3 @@ noremap! <Up> <Nop>
 noremap! <Down> <Nop>
 noremap! <Left> <Nop>
 noremap! <Right> <Nop>
-
-" Set up autocmds for specific filetypes
-autocmd FileType markdown setlocal spell spelllang=en
-autocmd FileType markdown,tex nnoremap <buffer> <C-l> $$<Left>
-autocmd FileType markdown,tex inoremap <buffer> <C-l> $$<Left>
