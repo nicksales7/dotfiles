@@ -13,6 +13,10 @@ let g:vimtex_view_method = 'zathura'
 
 Plug 'aditya-azad/candle-grey'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+nmap <leader>m <Plug>MarkdownPreview
+nmap <leader>M <Plug>MarkdownPreviewStop
+let g:mkdp_theme = 'light'
 
 call plug#end()
 
@@ -60,8 +64,10 @@ autocmd FileType tex inoremap \( \(\)<Left><Left>
 autocmd FileType tex inoremap \[ \[\]<Left><Left>
 autocmd FileType tex inoremap \{ \{\}<Left><Left>
 
-" Spellcheck markdown
+" Markdown stuff
 autocmd FileType markdown setlocal spell spelllang=en
+autocmd FileType markdown inoremap $ $$<Left>
+autocmd FileType markdown inoremap <buffer> ' '
 
 " Autoclose brackets and quotes globally
 inoremap ( ()<Left>
