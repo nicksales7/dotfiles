@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/mnt/nvme/math-notes/.git'
-let g:netrw_dirhist_6='/home/nick/Programming/dotfiles/.vim'
-let g:netrw_dirhist_5='/mnt/nvme/notes-vault/.obsidian'
-let g:netrw_dirhist_4='/mnt/nvme/notes-vault'
-let g:netrw_dirhist_3='/etc/X11/xorg.conf.d'
-let g:netrw_dirhist_2='/home/nick/.config/i3blocks'
-let g:netrw_dirhist_1='/etc/vim'

@@ -186,7 +186,7 @@ bar {
 }
 
 # Make monitor main display on left
-exec --no-startup-id xrandr --output HDMI-A-0 --mode 1920x1080 --rate 74.97 --above eDP --primary
+exec --no-startup-id xrandr --output HDMI-A-0 --auto --mode 1920x1080 --rate 74.97 --above eDP --primary
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
@@ -199,5 +199,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +25%
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 25%-
 
 
-exec --no-startup-id xss-lock -- "systemctl suspend"
+exec --no-startup-id xss-lock -- "systemctl suspend -i"
 exec --no-startup-id xset s 300 300
+exec --no-startup-id xset dpms 300 300 300
+exec --no-startup-id /bin/dim_screen_brightnessctl.sh
