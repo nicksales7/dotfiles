@@ -177,6 +177,7 @@ require("lazy").setup({
     end,
   },
   { "Julian/lean.nvim" },
+  { "neoclide/coc.nvim" },
   { "neovim/nvim-lspconfig" },
   { "nvim-lua/plenary.nvim" },
   {

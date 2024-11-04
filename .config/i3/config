@@ -65,7 +65,7 @@ tiling_drag modifier titlebar
 bindsym $mod+t exec alacritty
 
 # start firefox
-bindsym $mod+b exec brave-browser
+bindsym $mod+b exec qutebrowser.sh
 
 # start file manager
 bindsym $mod+m exec nautilus
@@ -198,8 +198,7 @@ exec --no-startup-id /usr/libexec/gsd-xsettings
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +25%
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 25%-
 
-
+exec --no-startup-id ~/.local/bin/brightness_control.sh
 exec --no-startup-id xss-lock -- "systemctl suspend -i"
 exec --no-startup-id xset s 300 300
 exec --no-startup-id xset dpms 300 300 300
-exec --no-startup-id /bin/dim_screen_brightnessctl.sh
