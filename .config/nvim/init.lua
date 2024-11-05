@@ -51,8 +51,6 @@ vim.keymap.set('n', '<leader>j', '<C-w>j', { noremap = true, silent = true })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
-    vim.api.nvim_set_keymap('i', '\\(', '\\(\\)<Left><Left>', { noremap = true, silent = true })
-    vim.api.nvim_set_keymap('i', '\\[', '\\[\\]<Left><Left>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('i', '\\{', '\\{\\}<Left><Left>', { noremap = true, silent = true })
   end
 })
@@ -80,7 +78,9 @@ vim.api.nvim_set_keymap('i', '{', '{}<Esc>i', { noremap = true, silent = true })
 -- Autocmd to set up a keymap for $$ in markdown 
 vim.api.nvim_exec([[
   autocmd FileType markdown nnoremap <buffer> $ $$<Left>
+  autocmd FileType tex nnoremap <buffer> $ $$<Left>
   autocmd FileType markdown inoremap <buffer> $ $$<Left>
+  autocmd FileType tex inoremap <buffer> $ $$<Left>
 ]], false)
 
 -- Set tab spacing
