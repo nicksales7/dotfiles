@@ -1,7 +1,7 @@
 # i3blocks config
 
 [volume]
-command=amixer get Master | awk -F'[][]' '/Left:/ { print "VOL: " $2 }'
+command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print "VOL: " int($2*100) "%"}'
 interval=1
 color=#FFFFFF
 
@@ -11,7 +11,7 @@ interval=30
 color=#FFFFFF
 
 [wireless]
-command=iw dev wlp3s0 link | awk '/SSID/ { essid=$2 } /signal/ { signal=$2 " " $3 }  /tx bitrate/ { br=$3 " " $4 } END { print "W: (ESSID: " essid ", Bit Rate: " br ")" }'
+command=nmcli -t -f IN-USE,SSID,SIGNAL,RATE dev wifi | awk -F ':' '$1=="*" {print "W: (ESSID: " $2 ", Bit Rate: " $4 " Mbps, Signal: " $3 "%)"}'
 interval=5
 color=#FFFFFF
 

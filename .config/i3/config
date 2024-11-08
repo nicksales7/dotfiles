@@ -64,11 +64,11 @@ tiling_drag modifier titlebar
 # start a terminal
 bindsym $mod+t exec alacritty
 
-# start firefox
-bindsym $mod+b exec qutebrowser.sh
+# start browser
+bindsym $mod+b exec qutebrowser
 
 # start file manager
-bindsym $mod+m exec nautilus
+bindsym $mod+m exec alacritty -e ranger
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -186,7 +186,7 @@ bar {
 }
 
 # Make monitor main display on left
-exec --no-startup-id xrandr --output HDMI-A-0 --auto --mode 1920x1080 --rate 74.97 --above eDP --primary
+exec --no-startup-id xrandr --output HDMI-1 --auto --mode 1920x1080 --rate 74.97 --above eDP-1 --primary
 
 # set wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
@@ -198,6 +198,7 @@ exec --no-startup-id /usr/libexec/gsd-xsettings
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +25%
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 25%-
 
+# Suspend management
 exec --no-startup-id ~/.local/bin/brightness_control.sh
 exec --no-startup-id xss-lock -- "systemctl suspend -i"
 exec --no-startup-id xset s 300 300
