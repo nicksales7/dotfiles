@@ -29,22 +29,29 @@ vim.keymap.set('n', '<leader>l', '<C-w>l', { noremap = true, silent = true }) --
 vim.keymap.set('n', '<leader>k', '<C-w>k', { noremap = true, silent = true }) -- Move focus up
 vim.keymap.set('n', '<leader>j', '<C-w>j', { noremap = true, silent = true }) -- Move focus down
 
--- Disable arrow keys
-for _, mode in pairs({ 'n', 'i' }) do
-  for _, key in pairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
-    vim.api.nvim_set_keymap(mode, key, '<Nop>', { noremap = true, silent = true })
-  end
-end
+-- Disable arrow keys in normal mode
+vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { noremap = true, silent = true })
+
+-- Disable arrow keys in insert mode
+vim.api.nvim_set_keymap('i', '<Up>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Down>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Left>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Right>', '<Nop>', { noremap = true, silent = true })
 
 -- Autoclose brackets and quotes
-for _, key in pairs({ '(', "'", '`', '"', '[', '{' }) do
-  vim.api.nvim_set_keymap('i', key, key .. key .. '<Esc>i', { noremap = true, silent = true })
-end
+vim.api.nvim_set_keymap('i', '(', '()<Esc>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', "'", "''<Esc>i", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '`', '``<Esc>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '"', '""<Esc>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '[', '[]<Esc>i', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '{', '{}<Esc>i', { noremap = true, silent = true })
 
 -- Autocommands
 vim.api.nvim_exec([[
   autocmd FileType markdown setlocal spell spelllang=en
-
   autocmd FileType markdown nnoremap <buffer> $ $$<Left>
   autocmd FileType tex nnoremap <buffer> $ $$<Left>
   autocmd FileType markdown inoremap <buffer> $ $$<Left>
@@ -80,7 +87,7 @@ vim.opt.smartindent = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('~/Documents/nvim-undo')
-vim.g.python3_host_prog = '~/.config/nvim/env/bin/python'
+vim.g.python3_host_prog = '/run/current-system/sw/bin/python3'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wildmenu = true
@@ -126,13 +133,38 @@ require("lazy").setup({
       vim.g.UltiSnipsSnippetDirectories = { '~/.vim/UltiSnips', 'UltiSnips' }
     end,
   },
-  { "Julian/lean.nvim" },
-  { "neoclide/coc.nvim" },
-  { "neovim/nvim-lspconfig" },
-  { "nvim-lua/plenary.nvim" },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    dependencies = {
+      { "ms-jpq/coq_nvim", branch = "coq" },
+      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+      { "ms-jpq/coq.thirdparty", branch = "3p" },
+    },
+    init = function()
+      vim.g.coq_settings = {
+        auto_start = true,
+      }
+    end,
+    config = function()
+      -- Your LSP settings here
+    end,
+  },
+  {
+    "Julian/lean.nvim",
+    event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      lsp = {},
+      mappings = true,
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" }
   }
 })
 
