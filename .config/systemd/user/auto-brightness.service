@@ -1,9 +1,0 @@
-[Unit]
-Description=Auto Brightness Adjustment
-
-[Service]
-ExecStart=/home/nick/.config/i3/brightness_control.sh
-Restart=always
-
-[Install]
-WantedBy=default.target

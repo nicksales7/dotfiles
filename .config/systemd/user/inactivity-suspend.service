@@ -1,9 +1,0 @@
-[Unit]
-Description=Auto Suspend on Inactivity
-
-[Service]
-ExecStart=/home/nick/.config/i3/inactivity-suspend.sh
-Restart=always
-
-[Install]
-WantedBy=default.target

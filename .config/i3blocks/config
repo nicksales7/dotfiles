@@ -2,31 +2,26 @@
 command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print "VOL: " int($2*100) "%"}'
 interval=1
 color=#FFFFFF
-# `wpctl` is part of WirePlumber/PipeWire, which you have enabled on NixOS.
 
 [battery]
 command=acpi -b | awk -F', ' '{print "BAT: " $2}' | tr -d '%'
 interval=30
 color=#FFFFFF
-# Ensure `acpi` is installed in `environment.systemPackages`.
 
 [wireless]
 command=nmcli -t -f IN-USE,SSID,SIGNAL,RATE dev wifi | awk -F ':' '$1=="*" {print "W: (ESSID: " $2 ", Bit Rate: " $4 " Mbps, Signal: " $3 "%)"}'
 interval=5
 color=#FFFFFF
-# `nmcli` is included with `networkmanager` which you have enabled.
 
 [cpu_gpu_temperature]
 command=~/.config/i3/cpu_gpu_temp.sh
 interval=1
 color=#FFFFFF
-# Ensure `cpu_gpu_temp.sh` is configured correctly with NixOS paths. Update any specific NixOS sensor paths in the script.
 
 [memory]
 command=free -h | awk '/^Mem/ {print "MEM: " $3 "/" $2}'
 interval=10
 color=#FFFFFF
-# `free` is part of the `procps` package, so add `procps` to `environment.systemPackages`.
 
 [tztime]
 command=date '+%Y-%m-%d %H:%M:%S'
