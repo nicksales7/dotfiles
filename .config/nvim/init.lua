@@ -62,7 +62,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
     vim.api.nvim_set_keymap('i', '\\{', '\\{\\}<Left><Left>', { noremap = true, silent = true })
-    vim.opt_local.conceallevel = 2
   end
 })
 
@@ -87,13 +86,11 @@ vim.opt.smartindent = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('~/Documents/nvim-undo')
-vim.g.python3_host_prog = '/run/current-system/sw/bin/python3'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.wildmenu = true
 vim.opt.updatetime = 300
 vim.opt.swapfile = false
-vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'nc'
 
 -- Lazy.nvim Plugins
@@ -127,9 +124,9 @@ require("lazy").setup({
   {
     "SirVer/ultisnips",
     config = function()
-      vim.g.UltiSnipsExpandTrigger = '<tab>'
-      vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
-      vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+      vim.g.UltiSnipsExpandTrigger = '<C-l>'
+      vim.g.UltiSnipsJumpForwardTrigger = '<C-l>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<C-h>'
       vim.g.UltiSnipsSnippetDirectories = { '~/.vim/UltiSnips', 'UltiSnips' }
     end,
   },
