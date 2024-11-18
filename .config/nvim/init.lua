@@ -61,7 +61,8 @@ vim.api.nvim_exec([[
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
-    vim.api.nvim_set_keymap('i', '\\{', '\\{\\}<Left><Left>', { noremap = true, silent = true })
+      vim.o.conceallevel = 2
+      vim.api.nvim_set_keymap('i', '\\{', '\\{\\}<Left><Left>', { noremap = true, silent = true })
   end
 })
 
