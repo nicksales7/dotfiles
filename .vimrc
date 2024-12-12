@@ -1,9 +1,9 @@
 call plug#begin()
 Plug 'lervag/vimtex'
-Plug 'ntk148v/komau.vim' 
+Plug 'nanotech/jellybeans.vim' 
 call plug#end()
 syntax on
-colorscheme komau
+colorscheme jellybeans
 set background=dark
 set tabstop=2
 set shiftwidth=2
